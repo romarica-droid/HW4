@@ -7,18 +7,24 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject pipePrefab;
 
+    private float actionTime;
+
     void Start()
     {
-        
+        actionTime = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.time >= actionTime)
+        {
+            SpawnPipe(pipePrefab);
+            actionTime += 2.0f;
+        }
     }
     
-    private void institateObject(GameObject sprite)
+    private void SpawnPipe(GameObject sprite)
     {
         GameObject newThing = Instantiate(sprite) as GameObject;
         placeThing(newThing);

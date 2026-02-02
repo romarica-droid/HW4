@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PipeMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject pipePrefab;
     [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody2D pipeRb;
   
