@@ -28,7 +28,7 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 SpawnPipe(pipePrefab);
             }
-            actionTime += 2.5f;
+            actionTime += 3f;
         }
 
         Debug.Log(canSpawn);
@@ -42,8 +42,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void placeThing(GameObject sprite)
     {
-        float tempY = Random.Range(4f, -0.5f);
-        sprite.gameObject.transform.position = new Vector2(3f, tempY);
+        float tempY = Random.Range(7.5f, -0.5f);
+        sprite.gameObject.transform.position = new Vector2(5f, tempY);
     }
 
     private void stopGame()
