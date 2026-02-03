@@ -8,6 +8,9 @@ public class Bird : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private float jumpSpeed;
 
+    [SerializeField] private AudioSource explosion;
+    [SerializeField] private AudioSource rupee;
+
     public delegate void BirdListen();
     public event BirdListen addPoint;
     public event BirdListen endGame;
@@ -41,6 +44,7 @@ public class Bird : MonoBehaviour
     {
         if (collision.gameObject.tag == "Goal")
         {
+            playSound(rupee);
             sendInfo();
         }
     }
@@ -49,10 +53,17 @@ public class Bird : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            Debug.Log("hit");
+            playSound(explosion);
             GameObject parent = collision.transform.parent.gameObject;
             Destroy(parent);
             end();
         }
+    }
+
+    private void playSound(AudioSource clip)
+    {
+        Instantiate(clip);
+        clip.Play();
+        Destroy(clip);
     }
 }
