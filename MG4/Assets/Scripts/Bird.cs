@@ -10,6 +10,7 @@ public class Bird : MonoBehaviour
 
     [SerializeField] private AudioSource explosion;
     [SerializeField] private AudioSource rupee;
+    [SerializeField] private AudioSource flap;
 
     public delegate void BirdListen();
     public event BirdListen addPoint;
@@ -24,10 +25,7 @@ public class Bird : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpSpeed);
-        }
+        checkForJump();
     }
 
     private void sendInfo()
@@ -55,6 +53,7 @@ public class Bird : MonoBehaviour
         {
             playSound(explosion);
             GameObject parent = collision.transform.parent.gameObject;
+            playerRb.isKinematic = true;
             Destroy(parent);
             end();
         }
@@ -64,6 +63,14 @@ public class Bird : MonoBehaviour
     {
         Instantiate(clip);
         clip.Play();
-        Destroy(clip);
+    }
+
+    private void checkForJump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playSound(flap);
+            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpSpeed);
+        }
     }
 }
