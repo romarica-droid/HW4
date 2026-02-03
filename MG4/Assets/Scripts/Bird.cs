@@ -45,14 +45,14 @@ public class Bird : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Obstacle")
         {
             Debug.Log("hit");
-
+            GameObject parent = collision.transform.parent.gameObject;
+            Destroy(parent);
             end();
         }
     }
-
 }
