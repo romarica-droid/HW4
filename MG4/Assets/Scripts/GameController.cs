@@ -7,7 +7,6 @@ public class NewBehaviourScript : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject pipePrefab;
-    [SerializeField] private GameObject colliderPrefab;
 
     private bool canSpawn;
 
@@ -18,7 +17,7 @@ public class NewBehaviourScript : MonoBehaviour
         actionTime = 1.0f;
         canSpawn = true;
         Locater.Instance.player.endGame += stopGame;
-}
+    }
 
     // Update is called once per frame
     void Update()
@@ -29,8 +28,10 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 SpawnPipe(pipePrefab);
             }
-            actionTime += 2.0f;
+            actionTime += 2.5f;
         }
+
+        Debug.Log(canSpawn);
     }
     
     private void SpawnPipe(GameObject sprite)
@@ -41,7 +42,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void placeThing(GameObject sprite)
     {
-        float tempY = Random.Range(5f, -3f);
+        float tempY = Random.Range(4f, -0.5f);
         sprite.gameObject.transform.position = new Vector2(3f, tempY);
     }
 

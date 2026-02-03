@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
@@ -28,30 +29,30 @@ public class Bird : MonoBehaviour
 
     private void sendInfo()
     {
-        Debug.Log("Passed pipe");
-
         addPoint?.Invoke();
     }
 
     private void end()
-    { 
-
+    {
         endGame?.Invoke();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Obstacle")
-        {
-            end();
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Goal")
         {
             sendInfo();
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            Debug.Log("hit");
+
+            end();
+        }
+    }
+
 }
